@@ -21,19 +21,22 @@ function renderImg() {
 
 function renderInputText(txt) {
     let line = getCurrLine();
-    drawText(txt, line.pos.x, line.pos.y, line.color, line.size, line.align);
+    drawText(txt, line.pos.x, line.pos.y, line.colorFill, line.colorStroke, line.font, line.size, line.align);
 }
 
 function renderTexts() {
     let meme = getMeme();
     meme.lines.forEach(line => {
-        drawText(line.txt, line.pos.x, line.pos.y, line.color, line.size, line.align);
+        drawText(line.txt, line.pos.x, line.pos.y, line.colorFill, line.colorStroke, line.font, line.size, line.align);
     });
 } 
 
 function draw() {
     let elTxt = document.querySelector('input[name=txt]').value;
     updateLineTxt(elTxt);
+    let line = getCurrLine();
+    line.colorFill = document.querySelector('input[name=color-fill]').value;
+    line.colorStroke = document.querySelector('input[name=color-stroke]').value;
     clearCanvas();
     renderImg();
     renderTexts();
@@ -41,7 +44,6 @@ function draw() {
 }
 
 function initCanvas() {
-    // resizeCanvas();
     clearCanvas();
     renderImg();
     renderTexts();
@@ -100,6 +102,12 @@ function onAdd() {
     document.querySelector('input[name=txt]').value = '';
 }
 
+function onTrash() {
+    document.querySelector('input[name=txt]').value = '';
+    clearLine();
+    initCanvas();     
+}
+
 function onIncrease() {
     addIncrease();
     initCanvas(); 
@@ -124,3 +132,24 @@ function onAlignRight() {
     addAlign('left');
     initCanvas();
 }
+
+function onFont() {
+    let elFont = document.querySelector('select[name=font]').value;
+    updateFont(elFont);
+    initCanvas();
+}
+
+function onColorFill() {
+    let elColorFill = document.querySelector('input[name=color-fill]').value;
+    let elColorStroke = document.querySelector('input[name=color-stroke]').value;
+    updateColor(elColorFill, elColorStroke);
+    initCanvas();
+}
+
+function onColorStroke() {
+    let elColorFill = document.querySelector('input[name=color-fill]').value;
+    let elColorStroke = document.querySelector('input[name=color-stroke]').value;
+    updateColor(elColorFill, elColorStroke);
+    draw();
+}
+

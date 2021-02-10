@@ -5,11 +5,11 @@ function drawImg(idx) {
     gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
 }
 
-function drawText(text, x, y, color, size, align) {
+function drawText(text, x, y, colorFill, colorStroke, font, size, align) {
     gCtx.lineWidth = 3;
-    gCtx.strokeStyle = 'black';
-    gCtx.fillStyle = color;
-    gCtx.font = `${size}px Impact`;
+    gCtx.strokeStyle = colorStroke;
+    gCtx.fillStyle = colorFill;
+    gCtx.font = `${size}px ${font}`;
     gCtx.textAlign = align;
     gCtx.fillText(text, x, y);
     gCtx.strokeText(text, x, y);

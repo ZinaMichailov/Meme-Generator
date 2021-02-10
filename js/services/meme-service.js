@@ -57,8 +57,10 @@ function createLine() {
     return { 
         txt: '', 
         size: 40, 
-        align: 'center', 
-        color: 'white',
+        align: 'center',
+        font: 'Impact', 
+        colorFill: '#ffffff',
+        colorStroke: '#000000',
         pos: {x: 250, y: 60},
         isDragging: false 
     }
@@ -78,6 +80,11 @@ function addLine() {
     gNewLinePosY = 200;
 }
 
+function clearLine() {
+    gMeme.lines[gCurrLine].txt = '';
+    // gCurrLine--;
+}
+
 function addIncrease() {
     gMeme.lines[gCurrLine].size += 10;
 }
@@ -88,6 +95,15 @@ function addDecrease() {
 
 function addAlign(align) {
     gMeme.lines[gCurrLine].align = align;
+}
+
+function updateFont(font) {
+    gMeme.lines[gCurrLine].font = font;
+}
+
+function updateColor(colorFill, colorStroke) {
+    gMeme.lines[gCurrLine].colorFill = colorFill;
+    gMeme.lines[gCurrLine].colorStroke = colorStroke;
 }
 
 function _mapKeywords() {

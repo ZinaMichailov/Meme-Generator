@@ -41,6 +41,19 @@
             <img class="btn btn-align-left" src="img/icons/align-to-left.png" onclick="onAlignLeft()">
             <img class="btn btn-align-center" src="img/icons/center-text-alignment.png" onclick="onAlignCenter()">
             <img class="btn btn-align-right" src="img/icons/align-to-right.png" onclick="onAlignRight()">
+            <select class="btn fonts" onchange="onFont()" name="font">
+                <option value="Impact">Impact</option>
+                <option value="Arial">Arial</option>
+                <option value="monospace">monospace</option>
+            </select>
+            <div class="btn btn-color-fill" style="position:relative;">
+                <img src="img/icons/paint-board-and-brush.png" onclick="onColorFill()">
+                <input type="color" name="color-fill" value="#ffffff" style="opacity:0; position:absolute; left:0;top:0;width:100%"/>
+            </div>
+            <div class="btn btn-color-stroke" style="position:relative;">
+                <img src="img/icons/text stroke.png" onclick="onColorStroke()">
+                <input type="color" name="color-stroke" value="#000000" style="opacity:0; position:absolute; left:0;top:0;width:100%"/>
+            </div>
         </div>
     </section>
 

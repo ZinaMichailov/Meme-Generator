@@ -119,14 +119,14 @@ header > * {
 	margin-bottom: 3em;
 	gap: 20px;
 	grid-template-columns: repeat(5, 1fr);
-	grid-template-rows: repeat(4, 1fr);
+	grid-template-rows: repeat(6, 1fr);
 }
 
 .input-txt {
 	grid-column: 1 / 6;
 	grid-row: 1 / 2;
 	border-radius: 12px;
-	margin: 2em 3em;
+	margin: 0.5em 3em;
 	border: none;
 }
 
@@ -168,6 +168,21 @@ header > * {
 .btn-align-right {
 	grid-column: 5 / 6;
 	grid-row: 3 / 4;
+}
+
+.btn-color-fill {
+	grid-column: 5 / 6;
+	grid-row: 4 / 5;
+}
+
+.btn-color-stroke {
+	grid-column: 4 / 5;
+	grid-row: 4 / 5;
+}
+
+.fonts {
+	grid-column: 1 / 4;
+	grid-row: 4 / 5;
 }
 
 /* Footer */
