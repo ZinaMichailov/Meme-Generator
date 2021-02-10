@@ -26,23 +26,19 @@ console.log(gKeywords);
 let id = 18;
 
 let gMeme;
+let gCurrLine = 0;
+let gNewLinePosY = 400;
 
 function updateMeme(imgIdx) {
     gMeme = { 
         selectedImgId: imgIdx, 
         selectedLineIdx: 0, 
-        lines: [] 
+        lines: [createLine()] 
     };
-    console.log(gMeme)
 }
 
-function createLine(txt) {
-    return { 
-        txt: txt, 
-        size: 40, 
-        align: 'left', 
-        color: 'white' 
-    }
+function updateLineTxt(txt) {
+    gMeme.lines[gCurrLine].txt = txt;
 }
 
 function getMeme() {
@@ -51,6 +47,46 @@ function getMeme() {
 
 function getImgs() {
     return gImgs;
+}
+
+function getCurrLine() {
+    return gMeme.lines[gCurrLine];
+}
+
+function createLine() {
+    return { 
+        txt: '', 
+        size: 40, 
+        align: 'center', 
+        color: 'white',
+        pos: {x: 250, y: 60} 
+    }
+}
+
+// buttons
+
+function switchLine() {
+    gCurrLine--;
+    if (gCurrLine < 0) gCurrLine += 2;
+}
+
+function addLine() {
+    gCurrLine++;
+    gMeme.lines[gCurrLine] = createLine();
+    gMeme.lines[gCurrLine].pos.y += gNewLinePosY;
+    gNewLinePosY = 200;
+}
+
+function addIncrease() {
+    gMeme.lines[gCurrLine].size += 10;
+}
+
+function addDecrease() {
+    gMeme.lines[gCurrLine].size -= 10;
+}
+
+function addAlign(align) {
+    gMeme.lines[gCurrLine].align = align;
 }
 
 function _mapKeywords() {

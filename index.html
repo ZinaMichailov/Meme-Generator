@@ -8,21 +8,36 @@
     <title>Meme Generator</title>
 </head>
 <body onload="init()">
-    <header class="flex">
-        <div class="logo flex">logo</div>
-        <ul class="main-nav clean-list flex">
-            <li><a href="#">Gallery</a></li>
-            <li><a href="#">Memes</a></li>
-            <li><a href="#">About</a></li>
-        </ul>
+    <header>
+        <div class="main-container flex space-between">
+            <span class="logo"><img src="img/logo/LOGO.png"></span>
+            <ul class="main-nav clean-list flex">
+                <li><a href="#">Gallery</a></li>
+                <li><a href="#">Memes</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </div>
     </header>
+    
+    <section class="search-container">
+        <div class="main-container">
+            <div class="keywords"></div>
+        </div>
+    </section>
 
-    <section class="gallery"></section>
+    <section class="gallery main-container" !hidden></section>
 
-    <section class="meme-editor">
+    <section class="meme-editor" hidden>
         <canvas class="flex" id="my-canvas" width="500" height="500" style="outline:1px solid gray; cursor: crosshair;"></canvas>
         <div class="canvas-content">
             <input type="text" placeholder="Enter text" name="txt" />
+            <span><img class="btn btn-switch" src="img/icons/up-and-down-opposite-double-arrows-side-by-side.png" onclick="onSwitch()"></span>
+            <span><img class="btn btn-add" src="img/icons/add.png" onclick="onAdd()"></span>
+            <span><img class="btn btn-increase" src="img/icons/increase font - icon.png" onclick="onIncrease()"></span>
+            <span><img class="btn btn-decrease" src="img/icons/decrease font - icon.png" onclick="onDecrease()"></span>
+            <span><img class="btn btn-align-left" src="img/icons/align-to-left.png" onclick="onAlignLeft()"></span>
+            <span><img class="btn btn-align-center" src="img/icons/center-text-alignment.png" onclick="onAlignCenter()"></span>
+            <span><img class="btn btn-align-right" src="img/icons/align-to-right.png" onclick="onAlignRight()"></span>
         </div>
     </section>
 
@@ -30,8 +45,8 @@
 
     <section class="about" hidden></section>
 
-    <footer>
-        <div class="logo flex">logo</div>
+    <footer class="flex align-items justify-content">
+        <div class="logo"><img src="img/logo/LOGO.png"></div>
         <small>all rights reserved 2019</small>
     </footer>
 

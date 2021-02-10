@@ -1,7 +1,5 @@
 'use strict'
 
-let gIsImgSelected = false
-
 function renderGallery(){
     var imgs = getImgs();
     var strHTML = '';
@@ -15,6 +13,9 @@ function renderGallery(){
 
 function onImg(imgIdx) {
     updateMeme(imgIdx);
-    gIsImgSelected = true;
     initCanvas();
+    document.querySelector('.meme-editor').hidden = false;
+    document.querySelector('.gallery').style.display = 'none';
+    document.querySelector('.search-container').style.display = 'none';
 }
+

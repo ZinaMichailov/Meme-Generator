@@ -8,13 +8,9 @@
 	box-sizing: border-box;
 }
 
-/* html {
-	font-family: lato, serif;
-	color: #606060;
-} */
-
 body {
 	margin: 0;
+	background-color: #e3e3e3;
 }
 
 a {
@@ -38,26 +34,92 @@ button:focus {
 	border: black;
 }
 
+/* LAYOUT  */
+
+.main-container {
+	margin-left: 50px;
+	margin-right: 50px;
+}
+
+/* Header */
+
 header {
 	background-color: #ff7f00;
 	height: 66px;
 }
 
-footer {
-	background-color: #ff7f00;
-	height: 208px;
+header > * {
+	padding-top: 17px;
 }
+
+.logo {
+	width: 133px;
+	height: 22px;
+}
+
+.main-nav > *:not(:last-child) {
+	margin-inline-end: 20px;
+}
+
+.main-nav a {
+	color: white;
+	font-family: Montserrat;
+	font-size: 19px;
+}
+
+.main-nav a:hover {
+	color: #000;
+}
+
+/* Search */
+
+.search-container {
+	background-color: white;
+	height: 102px;
+	text-align: center;
+}
+
+/* Gallery */
 
 .gallery {
 	display: grid;
-	gap: 5px;
+	gap: 21px;
 	grid-template-columns: repeat(3, 1fr);
-	grid-template-rows: repeat(2, 280px);
+	grid-template-rows: repeat(6, 1fr);
 }
+
+/* Editor */
 
 .meme-editor {
 	background-color: #e3e3e3;
 	height: 600px;
+}
+
+.btn {
+	width: 60px;
+	height: 60px;
+	margin: 9.1px 18px 0 19px;
+	padding: 11px 10.4px 9.7px 10.4px;
+	border-radius: 12px;
+	background-color: #ffffff;
+}
+
+/* Footer */
+
+footer {
+	background-color: #ff7f00;
+	color: white;
+	height: 208px;
+	flex-direction: column;
+}
+
+footer .logo {
+	margin-bottom: 20px;
+}
+
+small {
+	font-family: Montserrat;
+	font-size: 19px;
 }
 
 /* HELPERS */
@@ -66,6 +128,10 @@ footer {
 
 .flex {
 	display: flex;
+}
+
+.flex.space-between {
+	justify-content: space-between;
 }
 
 .flex.align-items {
