@@ -1,0 +1,85 @@
+/* FONTS */
+
+/*-----------------------------*/
+
+/* BASICS */
+
+* {
+	box-sizing: border-box;
+}
+
+/* html {
+	font-family: lato, serif;
+	color: #606060;
+} */
+
+body {
+	margin: 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	border-bottom: none;
+}
+
+img {
+	width: 100%;
+}
+
+button {
+	cursor: pointer;
+}
+
+button:focus {
+	outline: none;
+	border: black;
+}
+
+header {
+	background-color: #ff7f00;
+	height: 66px;
+}
+
+footer {
+	background-color: #ff7f00;
+	height: 208px;
+}
+
+.gallery {
+	display: grid;
+	gap: 5px;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(2, 280px);
+}
+
+.meme-editor {
+	background-color: #e3e3e3;
+	height: 600px;
+}
+
+/* HELPERS */
+
+/* flex helpers */
+
+.flex {
+	display: flex;
+}
+
+.flex.align-items {
+	align-items: center;
+}
+
+.flex.justify-content {
+	justify-content: center;
+}
+
+/* list helpers */
+
+.clean-list {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}

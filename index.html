@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="css/main.css">
     <title>Meme Generator</title>
 </head>
-<body>
-    <header>
-        <div class="logo">logo</div>
+<body onload="init()">
+    <header class="flex">
+        <div class="logo flex">logo</div>
         <ul class="main-nav clean-list flex">
             <li><a href="#">Gallery</a></li>
             <li><a href="#">Memes</a></li>
@@ -19,12 +19,25 @@
 
     <section class="gallery"></section>
 
-    <section class="meme-editor" hidden></section>
+    <section class="meme-editor">
+        <canvas class="flex" id="my-canvas" width="500" height="500" style="outline:1px solid gray; cursor: crosshair;"></canvas>
+        <div class="canvas-content">
+            <input type="text" placeholder="Enter text" name="txt" />
+        </div>
+    </section>
 
     <section class="user-memes" hidden></section>
 
     <section class="about" hidden></section>
 
+    <footer>
+        <div class="logo flex">logo</div>
+        <small>all rights reserved 2019</small>
+    </footer>
+
+    <script src="js/services/util-service.js"></script>
+    <script src="js/services/meme-service.js"></script>
+    <script src="js/gallery-controller.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
