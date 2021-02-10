@@ -14,7 +14,7 @@ function renderGallery(){
 function onImg(imgIdx) {
     updateMeme(imgIdx);
     initCanvas();
-    document.querySelector('.meme-editor').hidden = false;
+    document.querySelector('.meme-editor').style.display = 'grid';
     document.querySelector('.gallery').style.display = 'none';
     document.querySelector('.search-container').style.display = 'none';
 }

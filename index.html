@@ -25,19 +25,22 @@
         </div>
     </section>
 
-    <section class="gallery main-container" !hidden></section>
+    <section class="gallery main-container"></section>
 
-    <section class="meme-editor" hidden>
-        <canvas class="flex" id="my-canvas" width="500" height="500" style="outline:1px solid gray; cursor: crosshair;"></canvas>
+    <section class="meme-editor main-container">
+        <div class="canvas-container">
+            <canvas class="canvas" id="my-canvas" width="500" height="500" style="outline:1px solid gray; cursor: crosshair;"></canvas>
+        </div>
         <div class="canvas-content">
-            <input type="text" placeholder="Enter text" name="txt" />
-            <span><img class="btn btn-switch" src="img/icons/up-and-down-opposite-double-arrows-side-by-side.png" onclick="onSwitch()"></span>
-            <span><img class="btn btn-add" src="img/icons/add.png" onclick="onAdd()"></span>
-            <span><img class="btn btn-increase" src="img/icons/increase font - icon.png" onclick="onIncrease()"></span>
-            <span><img class="btn btn-decrease" src="img/icons/decrease font - icon.png" onclick="onDecrease()"></span>
-            <span><img class="btn btn-align-left" src="img/icons/align-to-left.png" onclick="onAlignLeft()"></span>
-            <span><img class="btn btn-align-center" src="img/icons/center-text-alignment.png" onclick="onAlignCenter()"></span>
-            <span><img class="btn btn-align-right" src="img/icons/align-to-right.png" onclick="onAlignRight()"></span>
+            <input class="input-txt" type="text" placeholder="Enter text" name="txt" />
+            <img class="btn btn-switch" src="img/icons/up-and-down-opposite-double-arrows-side-by-side.png" onclick="onSwitch()">
+            <img class="btn btn-add" src="img/icons/add.png" onclick="onAdd()">
+            <img class="btn btn-trash" src="img/icons/trash.png" onclick="onTrash()">
+            <img class="btn btn-increase" src="img/icons/increase font - icon.png" onclick="onIncrease()">
+            <img class="btn btn-decrease" src="img/icons/decrease font - icon.png" onclick="onDecrease()">
+            <img class="btn btn-align-left" src="img/icons/align-to-left.png" onclick="onAlignLeft()">
+            <img class="btn btn-align-center" src="img/icons/center-text-alignment.png" onclick="onAlignCenter()">
+            <img class="btn btn-align-right" src="img/icons/align-to-right.png" onclick="onAlignRight()">
         </div>
     </section>
 

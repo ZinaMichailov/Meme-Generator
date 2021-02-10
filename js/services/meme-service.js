@@ -59,7 +59,8 @@ function createLine() {
         size: 40, 
         align: 'center', 
         color: 'white',
-        pos: {x: 250, y: 60} 
+        pos: {x: 250, y: 60},
+        isDragging: false 
     }
 }
 
