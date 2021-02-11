@@ -25,6 +25,8 @@ function resizeCanvas() {
     gElCanvas.height = elContainer.offsetHeight
 }
 
+// pos for mouse&touch 
+
 function getEvPos(ev) {
     var pos = {
         x: ev.offsetX,
@@ -41,12 +43,13 @@ function getEvPos(ev) {
     return pos;
 }
 
+// add listeners
 
 function addListeners() {
     addMouseListeners();
     addTouchListeners();
     window.addEventListener('resize', () => {
-        resizeCanvas();
+        // resizeCanvas();
         initCanvas();
     })
 }
@@ -61,4 +64,46 @@ function addTouchListeners() {
     gElCanvas.addEventListener('touchmove', onMove);
     gElCanvas.addEventListener('touchstart', onDown);
     gElCanvas.addEventListener('touchend', onUp);
+}
+
+// download
+
+function downloadCanvas(elLink) {
+    const data = gElCanvas.toDataURL();
+    elLink.href = data;
+    elLink.download = 'canvas';
+}
+
+// facebook
+
+function uploadImg(elForm, ev) {
+    ev.preventDefault();
+    document.getElementById('imgData').value = gElCanvas.toDataURL("image/jpeg");
+
+    function onSuccess(uploadedImgUrl) {
+        uploadedImgUrl = encodeURIComponent(uploadedImgUrl)
+        document.querySelector('.share-container').innerHTML = `
+        <a class="btn" 
+           href="https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}" title="Share on Facebook"
+           target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}'); return false;">
+           Share   
+        </a>`
+    }
+
+    doUploadImg(elForm, onSuccess);
+}
+
+function doUploadImg(elForm, onSuccess) {
+    var formData = new FormData(elForm);
+    fetch('//ca-upload.com/here/upload.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(function (res) {
+        return res.text()
+    })
+    .then(onSuccess)
+    .catch(function (err) {
+        console.error(err)
+    })
 }

@@ -12,8 +12,8 @@
         <div class="main-container flex space-between">
             <span class="logo"><img src="img/logo/LOGO.png"></span>
             <ul class="main-nav clean-list flex">
-                <li><a href="#">Gallery</a></li>
-                <li><a href="#">Memes</a></li>
+                <li><a onclick="onGallery()">Gallery</a></li>
+                <li><a onclick="onMemes()">Memes</a></li>
                 <li><a href="#">About</a></li>
             </ul>
         </div>
@@ -46,18 +46,26 @@
                 <option value="Arial">Arial</option>
                 <option value="monospace">monospace</option>
             </select>
-            <div class="btn btn-color-fill" style="position:relative;">
-                <img src="img/icons/paint-board-and-brush.png" onclick="onColorFill()">
-                <input type="color" name="color-fill" value="#ffffff" style="opacity:0; position:absolute; left:0;top:0;width:100%"/>
+            <div class="btn btn-color-fill" onclick="onColor()" style="position:relative;">
+                <img src="img/icons/paint-board-and-brush.png">
+                <input class="input-color-fill" type="color" name="color-fill" value="#ffffff" style="opacity:0; position:absolute; left:0;top:0;width:100%"/>
             </div>
-            <div class="btn btn-color-stroke" style="position:relative;">
-                <img src="img/icons/text stroke.png" onclick="onColorStroke()">
-                <input type="color" name="color-stroke" value="#000000" style="opacity:0; position:absolute; left:0;top:0;width:100%"/>
+            <div class="btn btn-color-stroke" onclick="onColor()" style="position:relative;">
+                <img src="img/icons/text stroke.png">
+                <input class="input-color-stroke" type="color" name="color-stroke" value="#000000" style="opacity:0; position:absolute; left:0;top:0;width:100%"/>
             </div>
+            <span class="btn btn-save" onclick="onSave()">Save</span>
+            <a class="btn btn-download" href="#" onclick="downloadCanvas(this)" download="">Download</a>
+            <form class="btn btn-share" action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
+                <input name="img" id="imgData" type="hidden" />
+                <button  type="submit">Publish</button>
+                <span class="share-container"></span>
+            </form>
+            
         </div>
     </section>
 
-    <section class="user-memes" hidden></section>
+    <section class="user-memes"></section>
 
     <section class="about" hidden></section>
 
@@ -67,7 +75,9 @@
     </footer>
 
     <script src="js/services/util-service.js"></script>
+    <script src="js/services/storage-service.js"></script>
     <script src="js/services/meme-service.js"></script>
+    <script src="js/user-memes-controller.js"></script>
     <script src="js/gallery-controller.js"></script>
     <script src="js/main.js"></script>
 </body>

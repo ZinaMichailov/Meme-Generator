@@ -1,5 +1,8 @@
 'use strict'
 
+const STORAGE_KEY = 'memes';
+let gSaveMemes = [];
+
 let gImgs = [
     {id: 1, url: 'img/meme-imgs/1.jpg', keywords: ['politicians', 'angry']},
     {id: 2, url: 'img/meme-imgs/2.jpg', keywords: ['animals', 'sweet']},
@@ -22,8 +25,7 @@ let gImgs = [
 ];
 
 let gKeywords = _mapKeywords(gImgs);
-console.log(gKeywords);
-let id = 18;
+let gId = 18;
 
 let gMeme;
 let gCurrLine = 0;
@@ -32,7 +34,7 @@ let gNewLinePosY = 400;
 function updateMeme(imgIdx) {
     gMeme = { 
         selectedImgId: imgIdx, 
-        selectedLineIdx: 0, 
+        selectedLineIdx: gCurrLine, 
         lines: [createLine()] 
     };
 }
@@ -104,6 +106,11 @@ function updateFont(font) {
 function updateColor(colorFill, colorStroke) {
     gMeme.lines[gCurrLine].colorFill = colorFill;
     gMeme.lines[gCurrLine].colorStroke = colorStroke;
+}
+
+function _saveMemeToStorage() {
+    gSaveMemes.push(gMeme);
+    saveToStorage(STORAGE_KEY, gSaveMemes);
 }
 
 function _mapKeywords() {

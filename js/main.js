@@ -11,6 +11,8 @@ function init() {
     gCtx = gElCanvas.getContext('2d');
     window.addEventListener("keyup", draw, true);
     addListeners();
+    renderCanvasUserMemes();
+    renderUserMemes();
 }
 
 // render canvas
@@ -139,17 +141,14 @@ function onFont() {
     initCanvas();
 }
 
-function onColorFill() {
+function onColor() {
+    console.log('hi')
     let elColorFill = document.querySelector('input[name=color-fill]').value;
     let elColorStroke = document.querySelector('input[name=color-stroke]').value;
     updateColor(elColorFill, elColorStroke);
     initCanvas();
 }
 
-function onColorStroke() {
-    let elColorFill = document.querySelector('input[name=color-fill]').value;
-    let elColorStroke = document.querySelector('input[name=color-stroke]').value;
-    updateColor(elColorFill, elColorStroke);
-    draw();
+function onSave() {
+    _saveMemeToStorage();
 }
-

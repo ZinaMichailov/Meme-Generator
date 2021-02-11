@@ -11,6 +11,7 @@
 body {
 	margin: 0;
 	background-color: #e3e3e3;
+	height: 100vh;
 }
 
 a {
@@ -37,8 +38,9 @@ button:focus {
 /* LAYOUT  */
 
 .main-container {
-	margin-left: 50px;
-	margin-right: 50px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 90vw;
 }
 
 /* Header */
@@ -94,6 +96,7 @@ header > * {
 
 .meme-editor {
 	padding-top: 50px;
+	padding-bottom: 50px;
 	background-color: #e3e3e3;
 	height: 600px;
 	display: none;
@@ -110,16 +113,17 @@ header > * {
 	padding: 11px 10.4px 9.7px 10.4px;
 	border-radius: 12px;
 	background-color: #ffffff;
+	text-align: center;
 }
 
 .canvas-content {
 	display: grid;
+	height: 500px;
 	margin-left: 3em;
 	margin-right: 1em;
-	margin-bottom: 3em;
 	gap: 20px;
 	grid-template-columns: repeat(5, 1fr);
-	grid-template-rows: repeat(6, 1fr);
+	grid-template-rows: repeat(5, 1fr);
 }
 
 .input-txt {
@@ -183,6 +187,55 @@ header > * {
 .fonts {
 	grid-column: 1 / 4;
 	grid-row: 4 / 5;
+}
+
+.btn-save {
+	grid-column: 1 / 2;
+	grid-row: 5 / 6;
+	background-color: #ff7f00;
+	color: white;
+	font-family: Montserrat;
+}
+
+.btn-download {
+	grid-column: 2 / 4;
+	grid-row: 5 / 6;
+	background-color: #ff7f00;
+	color: white;
+	font-family: Montserrat;
+}
+
+.btn-share {
+	grid-column: 4 / 6;
+	grid-row: 5 / 6;
+	background-color: #ff7f00;
+	color: white;
+	font-family: Montserrat;
+}
+
+.btn-share button {
+	border: none;
+	background-color: #ff7f00;
+	color: white;
+	font-family: Montserrat;
+	font-size: 16px;
+}
+
+a.btn {
+	background-color: #ff7f00;
+	color: white;
+	font-family: Montserrat;
+}
+
+.input-color-fill,
+.input-color-stroke {
+	height: 60px;
+}
+
+/* user-memes */
+
+.user-memes {
+	display: none;
 }
 
 /* Footer */
