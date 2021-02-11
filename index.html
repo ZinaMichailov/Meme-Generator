@@ -4,18 +4,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css">
     <title>Meme Generator</title>
 </head>
 <body onload="init()">
+    <div class="main-screen" onclick="toggleMenu()"></div>
+
     <header>
         <div class="main-container flex space-between">
             <span class="logo"><img src="img/logo/LOGO.png"></span>
             <ul class="main-nav clean-list flex">
                 <li><a onclick="onGallery()">Gallery</a></li>
                 <li><a onclick="onMemes()">Memes</a></li>
-                <li><a href="#">About</a></li>
+                <li><a href="#about">About</a></li>
             </ul>
+            <button class="menu-btn" onclick="toggleMenu()">☰</button>
         </div>
     </header>
     
@@ -26,6 +30,7 @@
                 <button class="btn"><img class="img-search" src="img/icons/search-icon.png"></button>
             </form>
             <div class="keywords-container"></div>
+            <div class="keywords-screen"></div>
             <span value></span>
         </div>
     </section>
@@ -72,7 +77,33 @@
 
     <section class="user-memes"></section>
 
-    <section class="about" hidden></section>
+    <section id="about" class="about flex align-items">
+        <img class="about-img flex" src="img/about/me.jpg">
+        <div class="about-content">
+            <h4>Zina Michailov</h4>
+            <p class="">
+                Full-Stack Web Developer, passionate about solving daily challenges,<br>
+                with exprience in the lastest web technologies.<br>Chemical Engineer specializing in materials
+            </p>
+            <ul class="clean-list flex">
+                <li>
+                  <a href="#">
+                    <i class="fa fa-twitter flex align-items justify-content"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.facebook.com/zina.mihailov" target="_blank">
+                    <i class="fa fa-facebook flex align-items justify-content"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.linkedin.com/in/zina-michailov/" target="_blank">
+                    <i class="fa fa-linkedin flex align-items justify-content"></i>
+                  </a>
+                </li>
+              </ul>
+        </div>
+    </section>
 
     <footer class="flex align-items justify-content">
         <div class="logo"><img src="img/logo/LOGO.png"></div>

@@ -6,6 +6,7 @@ let gCtx;
 let gStartPos;
 
 function init() {
+    renderKeywords();
     renderGallery();
     gElCanvas = document.getElementById('my-canvas');
     gCtx = gElCanvas.getContext('2d');

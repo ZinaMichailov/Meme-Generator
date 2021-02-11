@@ -17,6 +17,7 @@ function onImg(imgIdx) {
     document.querySelector('.gallery').style.display = 'none';
     document.querySelector('.search-container').style.display = 'none';
     document.querySelector('.user-memes').style.display = 'none';
+    document.querySelector('.about').style.display = 'none';
 }
 
 function onGallery() {
@@ -24,6 +25,7 @@ function onGallery() {
     document.querySelector('.user-memes').style.display = 'none';
     document.querySelector('.gallery').style.display = 'grid';
     document.querySelector('.search-container').style.display = 'block';
+    document.querySelector('.about').style.display = 'flex';
 }
 
 function onSearch(ev) {
@@ -38,7 +40,7 @@ function onSearch(ev) {
         renderGallery();
     }
 }
-renderKeywords()
+
 function renderKeywords() {
     let keywords = getKeywords();
     let strHTML = '';
@@ -56,6 +58,5 @@ function onKeyword(elKeyword) {
     elKeyword.style.fontSize = (currentSize + 10) + 'px';
     // let imgs = sortBtKeyword(keyword);
     // renderGallery(imgs);
-
 }
 

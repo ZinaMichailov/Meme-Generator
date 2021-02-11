@@ -117,3 +117,9 @@ function doUploadImg(elForm, onSuccess) {
         console.error(err)
     })
 }
+
+// toggle
+
+function toggleMenu() {
+    document.body.classList.toggle('menu-open');
+}
