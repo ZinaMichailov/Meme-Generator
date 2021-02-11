@@ -21,13 +21,24 @@ function renderImg() {
     drawImg(meme.selectedImgId);
 }
 
+function renderTextBox(line) {
+    let posX = line.pos.x - (line.width / 2);
+    let posY = line.pos.y - (line.size);
+    let width = line.width + line.size * 0.5;
+    let height = line.size * 1.4;
+    drawRect(posX, posY, width, height);
+}
+
 function renderInputText(txt) {
     let line = getCurrLine();
+    let width = gCtx.measureText(txt).width;
+    updateWidthLine(width);
     drawText(txt, line.pos.x, line.pos.y, line.colorFill, line.colorStroke, line.font, line.size, line.align);
 }
 
 function renderTexts() {
     let meme = getMeme();
+    if (meme.lines.length === 0) return;
     meme.lines.forEach(line => {
         drawText(line.txt, line.pos.x, line.pos.y, line.colorFill, line.colorStroke, line.font, line.size, line.align);
     });
@@ -35,10 +46,8 @@ function renderTexts() {
 
 function draw() {
     let elTxt = document.querySelector('input[name=txt]').value;
+    console.log(elTxt)
     updateLineTxt(elTxt);
-    let line = getCurrLine();
-    line.colorFill = document.querySelector('input[name=color-fill]').value;
-    line.colorStroke = document.querySelector('input[name=color-stroke]').value;
     clearCanvas();
     renderImg();
     renderTexts();
@@ -87,9 +96,32 @@ function onUp() {
 }
 
 function isTxtClicked(clickedPos) {
-    let line = getCurrLine();
-    const distance = Math.sqrt((line.pos.x - clickedPos.x) ** 2 + (line.pos.y - clickedPos.y) ** 2);
-    return distance <= line.size;
+    let idx = gMeme.lines.findIndex(line => {
+        let width = line.width / 2;
+        let height = line.size / 2;
+        if (line.pos.y - height <= clickedPos.y && line.pos.y + height >= clickedPos.y) {
+            switch(line.align) {
+                case 'right': 
+                    if (line.pos.x - width*2 <= clickedPos.x && line.pos.x + line.size >= clickedPos.x)
+                        return true;
+                    return false;
+                case 'left': 
+                    if (line.pos.x <= clickedPos.x && line.pos.x + width*2 + line.size >= clickedPos.x)
+                        return true;
+                    return false;
+                case 'center': 
+                    if (line.pos.x - width <= clickedPos.x && line.pos.x + width + line.size >= clickedPos.x)
+                        return true;
+                    return false;
+            }
+        }
+        return false;
+    })
+
+    if (idx === -1) return false;
+    document.querySelector('input[name=txt]').value = '';
+    updateCurrLine(idx);
+    return true;
 }
 
 // buttons

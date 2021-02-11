@@ -35,12 +35,17 @@ function updateMeme(imgIdx) {
     gMeme = { 
         selectedImgId: imgIdx, 
         selectedLineIdx: gCurrLine, 
-        lines: [createLine()] 
+        lines: [_createLine()] 
     };
 }
 
-function updateLineTxt(txt) {
-    gMeme.lines[gCurrLine].txt = txt;
+function updateLineTxt(userTxt) {
+    if (userTxt === undefined) userTxt ='';
+    gMeme.lines[gCurrLine].txt = userTxt;
+}
+
+function updateWidthLine(num) {
+    gMeme.lines[gCurrLine].width = num;
 }
 
 function getMeme() {
@@ -55,17 +60,8 @@ function getCurrLine() {
     return gMeme.lines[gCurrLine];
 }
 
-function createLine() {
-    return { 
-        txt: '', 
-        size: 40, 
-        align: 'center',
-        font: 'Impact', 
-        colorFill: '#ffffff',
-        colorStroke: '#000000',
-        pos: {x: 250, y: 60},
-        isDragging: false 
-    }
+function updateCurrLine(idx) {
+    gCurrLine = idx;
 }
 
 // buttons
@@ -77,14 +73,14 @@ function switchLine() {
 
 function addLine() {
     gCurrLine++;
-    gMeme.lines[gCurrLine] = createLine();
-    gMeme.lines[gCurrLine].pos.y += gNewLinePosY;
+    let line = _createLine();
+    line.pos.y += gNewLinePosY;
+    gMeme.lines.push(line);
     gNewLinePosY = 200;
 }
 
 function clearLine() {
     gMeme.lines[gCurrLine].txt = '';
-    // gCurrLine--;
 }
 
 function addIncrease() {
@@ -106,6 +102,21 @@ function updateFont(font) {
 function updateColor(colorFill, colorStroke) {
     gMeme.lines[gCurrLine].colorFill = colorFill;
     gMeme.lines[gCurrLine].colorStroke = colorStroke;
+}
+
+function _createLine() {
+    let canvas = document.getElementById('my-canvas');
+    return { 
+        txt: '',
+        width: 0, 
+        size: 40, 
+        align: 'center',
+        font: 'Impact', 
+        colorFill: '#ffffff',
+        colorStroke: '#000000',
+        pos: {x: (canvas.width / 2) , y: 60},
+        isDragging: false 
+    }
 }
 
 function _saveMemeToStorage() {

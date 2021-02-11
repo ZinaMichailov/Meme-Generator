@@ -6,6 +6,7 @@ function drawImg(idx) {
 }
 
 function drawText(text, x, y, colorFill, colorStroke, font, size, align) {
+    gCtx.beginPath();
     gCtx.lineWidth = 3;
     gCtx.strokeStyle = colorStroke;
     gCtx.fillStyle = colorFill;
@@ -13,6 +14,15 @@ function drawText(text, x, y, colorFill, colorStroke, font, size, align) {
     gCtx.textAlign = align;
     gCtx.fillText(text, x, y);
     gCtx.strokeText(text, x, y);
+}
+
+function drawRect(x, y, width, height) {
+    gCtx.beginPath();
+    gCtx.lineWidth = 1;
+    gCtx.rect(x, y, width, height);
+    // gCtx.setLineDash([4, 2]);
+    gCtx.strokeStyle = 'gray';
+    gCtx.stroke();
 }
 
 function clearCanvas() {

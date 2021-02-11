@@ -23,9 +23,8 @@ function renderUserMemes() {
     memes.forEach((meme, idx) => {
         let elCanvas = document.getElementById(`${idx}-canvas`);
         let ctx = elCanvas.getContext('2d');
-        let elImg = document.querySelector(`.img-${meme.selectedImgId}`)
-        console.log(elImg)
-        ctx.drawImage(elImg, 0, 0, elCanvas.width, elCanvas.height)
+        let elImg = document.querySelector(`.img-${meme.selectedImgId}`);
+        ctx.drawImage(elImg, 0, 0, elCanvas.width, elCanvas.height);
         // drawImg(meme.selectedImgId);
         // meme.lines.forEach(line => {
         //     drawText(line.txt, line.pos.x, line.pos.y, line.colorFill, line.colorStroke, line.font, line.size, line.align);
