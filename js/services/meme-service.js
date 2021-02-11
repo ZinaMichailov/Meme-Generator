@@ -64,6 +64,10 @@ function updateCurrLine(idx) {
     gCurrLine = idx;
 }
 
+function getKeywords() {
+    return gKeywords;
+}
+
 // buttons
 
 function switchLine() {
@@ -103,6 +107,18 @@ function updateColor(colorFill, colorStroke) {
     gMeme.lines[gCurrLine].colorFill = colorFill;
     gMeme.lines[gCurrLine].colorStroke = colorStroke;
 }
+
+// sort
+
+function sortBtKeyword(keyword) {
+    return gImgs.filter(img => {
+        return img.keywords.find(imgKeyword => {
+            return imgKeyword === keyword
+        })
+    })
+}
+
+//
 
 function _createLine() {
     let canvas = document.getElementById('my-canvas');

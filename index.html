@@ -20,8 +20,13 @@
     </header>
     
     <section class="search-container">
-        <div class="main-container">
-            <div class="keywords"></div>
+        <div class="main-container flex space-between">
+            <form onsubmit="onSearch(event)">
+                <input class="input-search" type="text" placeholder="Enter search keyword" name="search" />
+                <button class="btn"><img class="img-search" src="img/icons/search-icon.png"></button>
+            </form>
+            <div class="keywords-container"></div>
+            <span value></span>
         </div>
     </section>
 

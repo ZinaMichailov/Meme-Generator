@@ -9,7 +9,6 @@ function init() {
     renderGallery();
     gElCanvas = document.getElementById('my-canvas');
     gCtx = gElCanvas.getContext('2d');
-    window.addEventListener("keyup", draw, true);
     addListeners();
     renderCanvasUserMemes();
     renderUserMemes();
@@ -45,6 +44,7 @@ function renderTexts() {
 } 
 
 function draw() {
+    window.addEventListener("keyup", draw, true);
     let elTxt = document.querySelector('input[name=txt]').value;
     console.log(elTxt)
     updateLineTxt(elTxt);

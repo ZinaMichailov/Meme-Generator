@@ -79,6 +79,18 @@ header > * {
 	background-color: white;
 	height: 102px;
 	text-align: center;
+	padding-top: 25px;
+}
+
+.input-search {
+	border: none;
+	border-bottom: 2px solid black;
+	height: 30px;
+}
+
+.img-search {
+	height: 16px;
+	width: 16px;
 }
 
 /* Gallery */
