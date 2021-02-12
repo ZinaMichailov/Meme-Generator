@@ -67,6 +67,7 @@ header > * {
 	color: white;
 	font-family: Montserrat;
 	font-size: 19px;
+	cursor: pointer;
 }
 
 .main-nav a:hover {
@@ -95,6 +96,29 @@ header > * {
 .img-search {
 	height: 16px;
 	width: 16px;
+}
+
+.keyword:not(:last-child) {
+	margin-inline-end: 30px;
+	font-family: Montserrat;
+	font-size: 15px;
+}
+
+.more {
+	border-bottom: 1px solid black;
+	cursor: pointer;
+}
+
+.more-keywords {
+	display: none;
+	background-color: white;
+	height: 50px;
+	flex-wrap: wrap;
+}
+
+.more-keywords .keywords-container > * {
+	margin-inline-end: 5px;
+	/* flex-grow: 1; */
 }
 
 /* Gallery */
@@ -449,5 +473,22 @@ small {
 
 	.main-nav > *:not(:last-child) {
 		margin-inline-end: 0;
+	}
+
+	.search-container {
+		height: 120px;
+	}
+
+	.search {
+		flex-direction: column;
+	}
+
+	.input-search {
+		margin-bottom: 20px;
+	}
+
+	.keywords-screen {
+		display: flex;
+		justify-content: center;
 	}
 }

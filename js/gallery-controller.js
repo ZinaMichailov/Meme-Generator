@@ -26,6 +26,7 @@ function onGallery() {
     document.querySelector('.gallery').style.display = 'grid';
     document.querySelector('.search-container').style.display = 'block';
     document.querySelector('.about').style.display = 'flex';
+    renderGallery();
 }
 
 function onSearch(ev) {
@@ -45,18 +46,30 @@ function renderKeywords() {
     let keywords = getKeywords();
     let strHTML = '';
     for (const key in keywords) {
-        strHTML +=`<span class="keyword" onclick="onKeyword(this)">${key}</span>`;
+        strHTML +=`<div class="keyword" onclick="onKeyword(this, '${key}')">${key}</div>`;
     }
 
     let elContainer = document.querySelector('.keywords-container');
     elContainer.innerHTML = strHTML;
+    document.querySelector('.more-keywords').style.display = 'none';
 }
 
-function onKeyword(elKeyword) {
+function onKeyword(elKeyword, keyword) {
     let style = window.getComputedStyle(elKeyword, null).getPropertyValue('font-size');
     let currentSize = parseFloat(style);
     elKeyword.style.fontSize = (currentSize + 10) + 'px';
-    // let imgs = sortBtKeyword(keyword);
-    // renderGallery(imgs);
+    let imgs = sortBtKeyword(keyword);
+    renderGallery(imgs);
+}
+
+function onMore() {
+    let elKeywords = document.querySelector('.more-keywords');
+    if ( elKeywords.style.display === 'none') {
+        elKeywords.style.display = 'flex';
+        document.querySelector('.more').innerText = 'less...';
+    } else {
+        elKeywords.style.display = 'none';
+        document.querySelector('.more').innerText = 'more...';
+    }
 }
 

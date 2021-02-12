@@ -72,7 +72,8 @@ function getKeywords() {
 
 function switchLine() {
     gCurrLine--;
-    if (gCurrLine < 0) gCurrLine += 2;
+    let numOfLines = gMeme.lines.length;
+    if (gCurrLine < 0) gCurrLine = numOfLines - 1;
 }
 
 function addLine() {

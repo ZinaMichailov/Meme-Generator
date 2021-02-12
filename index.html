@@ -24,15 +24,23 @@
     </header>
     
     <section class="search-container">
-        <div class="main-container flex space-between">
+        <div class="search main-container flex space-between">
             <form onsubmit="onSearch(event)">
                 <input class="input-search" type="text" placeholder="Enter search keyword" name="search" />
                 <button class="btn"><img class="img-search" src="img/icons/search-icon.png"></button>
             </form>
-            <div class="keywords-container"></div>
-            <div class="keywords-screen"></div>
-            <span value></span>
+            <div class="keywords-screen">
+                <span class="keyword" onclick="onKeyword(this, 'politicians')">politicians</span>
+                <span class="keyword" onclick="onKeyword(this, 'happy')">happy</span>
+                <span class="keyword" onclick="onKeyword(this, 'sweet')">sweet</span>
+                <span class="keyword" onclick="onKeyword(this, 'animals')">animals</span>
+                <span class="more" onclick="onMore()">more...</span>
+            </div>
         </div>
+    </section>
+    
+    <section class="more-keywords flex">
+        <div class="keywords-container main-container flex"></div>
     </section>
 
     <section class="gallery main-container"></section>
@@ -64,9 +72,9 @@
                 <img src="img/icons/text stroke.png">
                 <input class="input-color-stroke" type="color" name="color-stroke" value="#000000" style="opacity:0; position:absolute; left:0;top:0;width:100%"/>
             </div>
-            <span class="btn btn-save" onclick="onSave()">Save</span>
-            <a class="btn btn-download" href="#" onclick="downloadCanvas(this)" download="">Download</a>
-            <form class="btn btn-share" action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
+            <span class="btn btn-save flex align-items justify-content" onclick="onSave()">Save</span>
+            <a class="btn btn-download flex align-items justify-content" href="#" onclick="downloadCanvas(this)" download="">Download</a>
+            <form class="btn btn-share flex align-items justify-content" action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
                 <input name="img" id="imgData" type="hidden" />
                 <button  type="submit">Publish</button>
                 <span class="share-container"></span>
@@ -83,7 +91,7 @@
             <h4>Zina Michailov</h4>
             <p class="">
                 Full-Stack Web Developer, passionate about solving daily challenges,<br>
-                with exprience in the lastest web technologies.<br>Chemical Engineer specializing in materials
+                with experience in the latests web technologies.<br>Chemical Engineer specializing in materials
             </p>
             <ul class="clean-list flex">
                 <li>

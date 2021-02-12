@@ -24,7 +24,7 @@ function renderImg() {
 function renderTextBox(line) {
     let posX = line.pos.x - (line.width / 2);
     let posY = line.pos.y - (line.size);
-    let width = line.width + line.size * 0.5;
+    let width = line.width;
     let height = line.size * 1.4;
     drawRect(posX, posY, width, height);
 }
@@ -47,7 +47,6 @@ function renderTexts() {
 function draw() {
     window.addEventListener("keyup", draw, true);
     let elTxt = document.querySelector('input[name=txt]').value;
-    console.log(elTxt)
     updateLineTxt(elTxt);
     clearCanvas();
     renderImg();
@@ -69,12 +68,14 @@ function onDown(ev) {
     if (!isTxtClicked(pos)) return;
     let line = getCurrLine();
     line.isDragging = true;
+    renderTextBox(line);
     gStartPos = pos;
     document.body.style.cursor = 'grabbing';
 }
 
 function onMove(ev) {
     let line = getCurrLine();
+    renderTextBox(line);
     if (line.isDragging) {
         const pos = getEvPos(ev);
         const dx = pos.x - gStartPos.x;
@@ -130,6 +131,11 @@ function isTxtClicked(clickedPos) {
 function onSwitch() {
     document.querySelector('input[name=txt]').value = '';
     switchLine();
+    clearCanvas();
+    renderImg();
+    renderTexts();
+    let line = getCurrLine();
+    renderTextBox(line);
 }
 
 function onAdd() {
