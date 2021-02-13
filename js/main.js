@@ -18,6 +18,7 @@ function init() {
 // render canvas
 function renderImg() {
     let meme = getMeme();
+    if (meme.selectedImgId === undefined) return;
     drawImg(meme.selectedImgId);
 }
 
@@ -26,7 +27,19 @@ function renderTextBox(line) {
     let posY = line.pos.y - (line.size);
     let width = line.width;
     let height = line.size * 1.4;
-    drawRect(posX, posY, width, height);
+    switch(line.align) {
+        case 'right': 
+            drawRect(posX - width / 2, posY, width, height)
+            break;
+        case 'left': 
+            drawRect(posX + width / 2, posY, width, height)
+            break;
+        case 'center': 
+            drawRect(posX, posY, width, height);
+            break;
+        default:
+            break;
+    }
 }
 
 function renderInputText(txt) {
@@ -44,6 +57,15 @@ function renderTexts() {
     });
 } 
 
+function renderStickers() {
+    let meme = getMeme();
+    if (meme.stickers.length === 0) return;
+    meme.stickers.forEach(sticker => {
+        let elSticker = document.querySelector(`.sticker-${sticker.id}`);
+        gCtx.drawImage(elSticker, sticker.pos.x, sticker.pos.y, sticker.width, sticker.height);
+    });
+}
+
 function draw() {
     window.addEventListener("keyup", draw, true);
     let elTxt = document.querySelector('input[name=txt]').value;
@@ -51,6 +73,7 @@ function draw() {
     clearCanvas();
     renderImg();
     renderTexts();
+    renderStickers();
     renderInputText(elTxt);
 }
 
@@ -58,6 +81,7 @@ function initCanvas() {
     clearCanvas();
     renderImg();
     renderTexts();
+    renderStickers();
     draw();
 }
 
@@ -65,16 +89,25 @@ function initCanvas() {
 
 function onDown(ev) {
     const pos = getEvPos(ev);
-    if (!isTxtClicked(pos)) return;
-    let line = getCurrLine();
-    line.isDragging = true;
-    renderTextBox(line);
-    gStartPos = pos;
-    document.body.style.cursor = 'grabbing';
+    if (!isTxtClicked(pos) && !isStickerClicked(pos)) return;
+    if (isTxtClicked(pos)) {
+        let line = getCurrLine();
+        line.isDragging = true;
+        renderTextBox(line);
+        gStartPos = pos;
+        document.body.style.cursor = 'grabbing';
+    }
+    else if (isStickerClicked(pos)) {
+        let sticker = getCurrSticker();
+        sticker.isDragging = true;
+        gStartPos = pos;
+        document.body.style.cursor = 'grabbing';
+    }
 }
 
 function onMove(ev) {
     let line = getCurrLine();
+    let sticker = getCurrSticker();
     renderTextBox(line);
     if (line.isDragging) {
         const pos = getEvPos(ev);
@@ -88,17 +121,38 @@ function onMove(ev) {
         clearCanvas();
         renderImg();
         renderTexts();
+        renderStickers();
+    }
+    if (sticker === undefined) return;
+    if (sticker.isDragging) {
+        const pos = getEvPos(ev);
+        const dx = pos.x - gStartPos.x;
+        const dy = pos.y - gStartPos.y;
+
+        sticker.pos.x += dx;
+        sticker.pos.y += dy;
+        
+        gStartPos = pos;
+        clearCanvas();
+        renderImg();
+        renderTexts();
+        renderStickers();
+
     }
 }
 
 function onUp() {
     let line = getCurrLine();
     line.isDragging = false;
+    let sticker = getCurrSticker();
+    if (sticker === undefined) return;
+    sticker.isDragging = false;
     document.body.style.cursor = 'grab';
 }
 
 function isTxtClicked(clickedPos) {
-    let idx = gMeme.lines.findIndex(line => {
+    let meme = getMeme();
+    let idx = meme.lines.findIndex(line => {
         let width = line.width / 2;
         let height = line.size / 2;
         if (line.pos.y - height <= clickedPos.y && line.pos.y + height >= clickedPos.y) {
@@ -126,15 +180,27 @@ function isTxtClicked(clickedPos) {
     return true;
 }
 
+function isStickerClicked(clickedPos) {
+    let meme = getMeme();
+    let idx = meme.stickers.findIndex(sticker => {
+        return (sticker.pos.y <= clickedPos.y && sticker.pos.y + sticker.height >= clickedPos.y &&
+        sticker.pos.x <= clickedPos.x && sticker.pos.x + sticker.width * 2 >= clickedPos.x)
+    })
+    if (idx === -1) return false;
+    updateCurrSticker(idx);
+    return true;
+}
+
 // buttons
 
 function onSwitch() {
-    document.querySelector('input[name=txt]').value = '';
     switchLine();
     clearCanvas();
     renderImg();
     renderTexts();
+    renderStickers();
     let line = getCurrLine();
+    document.querySelector('input[name=txt]').value = line.txt;
     renderTextBox(line);
 }
 
@@ -181,13 +247,20 @@ function onFont() {
 }
 
 function onColor() {
-    console.log('hi')
     let elColorFill = document.querySelector('input[name=color-fill]').value;
     let elColorStroke = document.querySelector('input[name=color-stroke]').value;
     updateColor(elColorFill, elColorStroke);
     initCanvas();
 }
 
+function onSticker(idx) {
+    let sticker = _createSticker(idx)
+    const elSticker = document.querySelector(`.sticker-${idx}`);
+    gCtx.drawImage(elSticker, sticker.pos.x, sticker.pos.y, sticker.width, sticker.height);
+} 
+
 function onSave() {
     _saveMemeToStorage();
+    renderCanvasUserMemes();
+    renderUserMemes();
 }

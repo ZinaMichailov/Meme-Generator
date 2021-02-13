@@ -1,8 +1,8 @@
 'use strict'
 
 function drawImg(idx) {
-    const elImg = document.querySelector(`.img-${idx}`)
-    gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
+    const elImg = document.querySelector(`.img-${idx}`);
+    gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height);
 }
 
 function drawText(text, x, y, colorFill, colorStroke, font, size, align) {
@@ -14,6 +14,19 @@ function drawText(text, x, y, colorFill, colorStroke, font, size, align) {
     gCtx.textAlign = align;
     gCtx.fillText(text, x, y);
     gCtx.strokeText(text, x, y);
+}
+
+let ctx;
+function drawTextStorage(text, x, y, colorFill, colorStroke, font, size, align) {
+    if (!ctx) return;
+    ctx.beginPath();
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = colorStroke;
+    ctx.fillStyle = colorFill;
+    ctx.font = `${size}px ${font}`;
+    ctx.textAlign = align;
+    ctx.fillText(text, x, y);
+    ctx.strokeText(text, x, y);
 }
 
 function drawRect(x, y, width, height) {

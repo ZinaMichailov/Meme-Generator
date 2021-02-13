@@ -154,24 +154,35 @@ header > * {
 	border-radius: 12px;
 	background-color: #ffffff;
 	text-align: center;
+	transition: background-color 0.3s;
+}
+
+.btn:hover {
+	background-color: rgb(255, 127, 0);
+}
+
+.sticker {
+	width: 3em;
+	margin-left: 10px;
+	margin-right: 10px;
 }
 
 .canvas-content {
+	max-width: 500px;
 	display: grid;
 	height: 500px;
 	margin-left: 3em;
 	margin-right: 1em;
 	gap: 20px;
 	grid-template-columns: repeat(5, 1fr);
-	grid-template-rows: repeat(5, 1fr);
+	grid-template-rows: repeat(6, 1fr);
 }
 
 .input-txt {
 	grid-column: 1 / 6;
 	grid-row: 1 / 2;
-	border-radius: 12px;
-	margin: 0.5em 3em;
 	border: none;
+	border-radius: 12px;
 }
 
 .btn-switch {
@@ -229,9 +240,14 @@ header > * {
 	grid-row: 4 / 5;
 }
 
+.btn-sticker {
+	grid-column: 1 / 6;
+	grid-row: 5 / 6;
+}
+
 .btn-save {
 	grid-column: 1 / 2;
-	grid-row: 5 / 6;
+	grid-row: 6 / 7;
 	background-color: #ff7f00;
 	color: white;
 	font-family: Montserrat;
@@ -239,7 +255,7 @@ header > * {
 
 .btn-download {
 	grid-column: 2 / 4;
-	grid-row: 5 / 6;
+	grid-row: 6 / 7;
 	background-color: #ff7f00;
 	color: white;
 	font-family: Montserrat;
@@ -247,7 +263,7 @@ header > * {
 
 .btn-share {
 	grid-column: 4 / 6;
-	grid-row: 5 / 6;
+	grid-row: 6 / 7;
 	background-color: #ff7f00;
 	color: white;
 	font-family: Montserrat;
@@ -276,6 +292,7 @@ a.btn {
 
 .user-memes {
 	display: none;
+	height: 100vh;
 }
 
 /* About */
@@ -389,6 +406,11 @@ small {
 		grid-template-rows: repeat(2, 1fr);
 		grid-template-columns: 1fr;
 	}
+
+	.canvas-content {
+		margin-left: auto;
+		margin-right: auto;
+	}
 }
 
 @media (max-width: 740px) {
@@ -490,5 +512,36 @@ small {
 	.keywords-screen {
 		display: flex;
 		justify-content: center;
+	}
+
+	.about-img {
+		width: 10em;
+		height: 10em;
+		margin-right: 20px;
+	}
+
+	.about-content {
+		font-size: 10px;
+	}
+}
+
+@media (max-width: 500px) {
+	.about {
+		background-color: #ffffff;
+		height: 350px;
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+
+	.about-img {
+		width: 5em;
+		height: 5em;
+		margin-right: 10px;
+	}
+
+	.fa {
+		width: 30px;
+		height: 30px;
+		font-size: 15px;
 	}
 }

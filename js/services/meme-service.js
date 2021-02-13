@@ -29,13 +29,15 @@ let gId = 18;
 
 let gMeme;
 let gCurrLine = 0;
+let gCurrSticker = 0;
 let gNewLinePosY = 400;
 
 function updateMeme(imgIdx) {
     gMeme = { 
         selectedImgId: imgIdx, 
         selectedLineIdx: gCurrLine, 
-        lines: [_createLine()] 
+        lines: [_createLine()],
+        stickers: [] 
     };
 }
 
@@ -60,8 +62,16 @@ function getCurrLine() {
     return gMeme.lines[gCurrLine];
 }
 
+function getCurrSticker() {
+    return gMeme.stickers[gCurrSticker];
+}
+
 function updateCurrLine(idx) {
     gCurrLine = idx;
+}
+
+function updateCurrSticker(idx) {
+    gCurrSticker = idx;
 }
 
 function getKeywords() {
@@ -134,6 +144,19 @@ function _createLine() {
         pos: {x: (canvas.width / 2) , y: 60},
         isDragging: false 
     }
+}
+
+function _createSticker(idx) {
+    let elCanvas = document.getElementById('my-canvas');
+    let sticker = {
+        id: idx, 
+        width: elCanvas.width / 5, 
+        height: elCanvas.height / 5, 
+        pos: {x: (elCanvas.width / 2 - elCanvas.width / 14) , y: elCanvas.height / 2},
+        isDragging: false 
+    }
+    gMeme.stickers.push(sticker);
+    return sticker;
 }
 
 function _saveMemeToStorage() {
