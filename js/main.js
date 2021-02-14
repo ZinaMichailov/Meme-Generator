@@ -10,8 +10,7 @@ function init() {
     renderGallery();
     gElCanvas = document.getElementById('my-canvas');
     gCtx = gElCanvas.getContext('2d');
-    addListeners();
-    renderCanvasUserMemes();
+    renderStickersBtn();
     renderUserMemes();
 }
 
@@ -83,6 +82,29 @@ function initCanvas() {
     renderTexts();
     renderStickers();
     draw();
+}
+
+// Stickers
+
+function renderStickersBtn() {
+    let stickers = getStickers();
+    let strHTML = '<span onclick="onPrevPage()" style="font-weight: bold; font-size: 30px; flex: 1;"><</span>';
+    stickers.forEach(sticker => {
+        strHTML += `<img class="sticker sticker-${sticker}" src="img/stickers/${sticker}.png" onclick="onSticker(${sticker})">\n`;
+    }); 
+    strHTML += '<span class"page" onclick="onNextPage()" style="font-weight: bold; font-size: 30px; flex: 1;">></span>';
+    let elContainer = document.querySelector('.btn-sticker');
+    elContainer.innerHTML = strHTML;
+}
+
+function onNextPage() {
+    nextPage();
+    renderStickersBtn();
+}
+
+function onPrevPage() {
+    prevPage();
+    renderStickersBtn();
 }
 
 // Drag&Drop
@@ -175,7 +197,6 @@ function isTxtClicked(clickedPos) {
     })
 
     if (idx === -1) return false;
-    document.querySelector('input[name=txt]').value = '';
     updateCurrLine(idx);
     return true;
 }
@@ -260,7 +281,11 @@ function onSticker(idx) {
 } 
 
 function onSave() {
-    _saveMemeToStorage();
-    renderCanvasUserMemes();
+    saveUrl();
     renderUserMemes();
+}
+
+function saveUrl() {
+    let imgUrl = gElCanvas.toDataURL('img/jpg');
+    _saveMemeToStorage(imgUrl);
 }

@@ -16,19 +16,6 @@ function drawText(text, x, y, colorFill, colorStroke, font, size, align) {
     gCtx.strokeText(text, x, y);
 }
 
-let ctx;
-function drawTextStorage(text, x, y, colorFill, colorStroke, font, size, align) {
-    if (!ctx) return;
-    ctx.beginPath();
-    ctx.lineWidth = 3;
-    ctx.strokeStyle = colorStroke;
-    ctx.fillStyle = colorFill;
-    ctx.font = `${size}px ${font}`;
-    ctx.textAlign = align;
-    ctx.fillText(text, x, y);
-    ctx.strokeText(text, x, y);
-}
-
 function drawRect(x, y, width, height) {
     gCtx.beginPath();
     gCtx.lineWidth = 1;
@@ -71,10 +58,10 @@ function getEvPos(ev) {
 function addListeners() {
     addMouseListeners();
     addTouchListeners();
-    window.addEventListener('resize', () => {
-        resizeCanvas();
-        initCanvas();
-    })
+    // window.addEventListener('resize', () => {
+    //     resizeCanvas();
+    //     initCanvas();
+    // })
 }
 
 function addMouseListeners() {

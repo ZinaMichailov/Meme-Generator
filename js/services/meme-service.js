@@ -32,6 +32,29 @@ let gCurrLine = 0;
 let gCurrSticker = 0;
 let gNewLinePosY = 400;
 
+const PAGE_SIZE = 3;
+let gStickers = [0, 1, 2, 3];
+let gPageIdx = 0;
+
+function getStickers() {
+    var startIdx = gPageIdx * PAGE_SIZE;
+    return gStickers.slice(startIdx, startIdx + PAGE_SIZE);
+}
+
+function nextPage() {
+    gPageIdx++;
+    if (gPageIdx * PAGE_SIZE >= gStickers.length ) {
+        gPageIdx = 0;
+    }
+}
+
+function prevPage() {
+    gPageIdx--;
+    if (gPageIdx < 0) {
+        gPageIdx = Math.ceil((gStickers.length / PAGE_SIZE) - 1);
+    }
+}
+
 function updateMeme(imgIdx) {
     gMeme = { 
         selectedImgId: imgIdx, 
@@ -159,7 +182,8 @@ function _createSticker(idx) {
     return sticker;
 }
 
-function _saveMemeToStorage() {
+function _saveMemeToStorage(url) {
+    gMeme.url = url;
     gSaveMemes.push(gMeme);
     saveToStorage(STORAGE_KEY, gSaveMemes);
 }

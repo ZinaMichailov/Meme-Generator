@@ -292,7 +292,15 @@ a.btn {
 
 .user-memes {
 	display: none;
+	margin: 20px;
 	height: 100vh;
+	gap: 20px;
+	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+	grid-auto-rows: 152px;
+}
+
+.user-img {
+	outline: 1px solid gray;
 }
 
 /* About */
