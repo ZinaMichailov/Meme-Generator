@@ -10,6 +10,7 @@ function init() {
     renderGallery();
     gElCanvas = document.getElementById('my-canvas');
     gCtx = gElCanvas.getContext('2d');
+    addListeners();
     renderStickersBtn();
     renderUserMemes();
 }
@@ -17,7 +18,7 @@ function init() {
 // render canvas
 function renderImg() {
     let meme = getMeme();
-    if (meme.selectedImgId === undefined) return;
+    if (meme === undefined) return;
     drawImg(meme.selectedImgId);
 }
 
@@ -50,6 +51,7 @@ function renderInputText(txt) {
 
 function renderTexts() {
     let meme = getMeme();
+    if (meme === undefined) return;
     if (meme.lines.length === 0) return;
     meme.lines.forEach(line => {
         drawText(line.txt, line.pos.x, line.pos.y, line.colorFill, line.colorStroke, line.font, line.size, line.align);
@@ -58,6 +60,7 @@ function renderTexts() {
 
 function renderStickers() {
     let meme = getMeme();
+    if (meme === undefined) return;
     if (meme.stickers.length === 0) return;
     meme.stickers.forEach(sticker => {
         let elSticker = document.querySelector(`.sticker-${sticker.id}`);
@@ -288,4 +291,35 @@ function onSave() {
 function saveUrl() {
     let imgUrl = gElCanvas.toDataURL('img/jpg');
     _saveMemeToStorage(imgUrl);
+}
+
+// Listeners
+
+function addListeners() {
+    addMouseListeners();
+    addTouchListeners();
+    window.addEventListener('resize', () => {
+        resizeCanvas();
+        renderImg();
+        renderTexts();
+        renderStickers();
+    })
+}
+
+function addMouseListeners() {
+    gElCanvas.addEventListener('mousemove', onMove);
+    gElCanvas.addEventListener('mousedown', onDown);
+    gElCanvas.addEventListener('mouseup', onUp);
+}
+
+function addTouchListeners() {
+    gElCanvas.addEventListener('touchmove', onMove);
+    gElCanvas.addEventListener('touchstart', onDown);
+    gElCanvas.addEventListener('touchend', onUp);
+}
+
+function resizeCanvas() {
+    const elContainer = document.getElementById('my-canvas');
+    gElCanvas.width = elContainer.offsetWidth
+    gElCanvas.height = elContainer.offsetHeight
 }

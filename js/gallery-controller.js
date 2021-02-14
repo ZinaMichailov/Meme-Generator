@@ -13,8 +13,7 @@ function renderGallery(imgs = getImgs()) {
 function onImg(imgIdx) {
     document.querySelector('input[name=txt]').value = '';
     updateMeme(imgIdx);
-    initCanvas();
-    addListeners();
+    renderImg();
     document.querySelector('.meme-editor').style.display = 'grid';
     document.querySelector('.gallery').style.display = 'none';
     document.querySelector('.search-container').style.display = 'none';

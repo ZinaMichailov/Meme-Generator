@@ -29,12 +29,6 @@ function clearCanvas() {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
 }
 
-function resizeCanvas() {
-    const elContainer = document.querySelector('.canvas-container');
-    gElCanvas.width = elContainer.offsetWidth
-    gElCanvas.height = elContainer.offsetHeight
-}
-
 // pos for mouse&touch 
 
 function getEvPos(ev) {
@@ -51,29 +45,6 @@ function getEvPos(ev) {
         }
     }
     return pos;
-}
-
-// add listeners
-
-function addListeners() {
-    addMouseListeners();
-    addTouchListeners();
-    // window.addEventListener('resize', () => {
-    //     resizeCanvas();
-    //     initCanvas();
-    // })
-}
-
-function addMouseListeners() {
-    gElCanvas.addEventListener('mousemove', onMove);
-    gElCanvas.addEventListener('mousedown', onDown);
-    gElCanvas.addEventListener('mouseup', onUp);
-}
-
-function addTouchListeners() {
-    gElCanvas.addEventListener('touchmove', onMove);
-    gElCanvas.addEventListener('touchstart', onDown);
-    gElCanvas.addEventListener('touchend', onUp);
 }
 
 // download

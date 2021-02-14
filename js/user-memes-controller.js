@@ -24,6 +24,6 @@ function onUserMeme(meme) {
     console.log(meme)
     document.querySelector('.user-memes').style.display = 'none';
     document.querySelector('.meme-editor').style.display = 'grid';
-    // gMeme = meme;
-    // initCanvas();
+    gMeme = meme;
+    initCanvas();
 }

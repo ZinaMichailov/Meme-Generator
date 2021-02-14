@@ -30,7 +30,7 @@ let gId = 18;
 let gMeme;
 let gCurrLine = 0;
 let gCurrSticker = 0;
-let gNewLinePosY = 400;
+let gNewLinePosY;
 
 const PAGE_SIZE = 3;
 let gStickers = [0, 1, 2, 3];
@@ -110,11 +110,14 @@ function switchLine() {
 }
 
 function addLine() {
+    let elCanvas = document.getElementById('my-canvas');
+    console.log(elCanvas)
     gCurrLine++;
+    gNewLinePosY = elCanvas.height - 60;
     let line = _createLine();
     line.pos.y += gNewLinePosY;
     gMeme.lines.push(line);
-    gNewLinePosY = 200;
+    gNewLinePosY = elCanvas.height / 2;
 }
 
 function clearLine() {
@@ -164,7 +167,7 @@ function _createLine() {
         font: 'Impact', 
         colorFill: '#ffffff',
         colorStroke: '#000000',
-        pos: {x: (canvas.width / 2) , y: 60},
+        pos: {x: (canvas.width / 2) , y: (canvas.height / 10)},
         isDragging: false 
     }
 }
