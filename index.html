@@ -12,24 +12,24 @@
     <div class="main-screen" onclick="toggleMenu()"></div>
 
     <header>
-        <div class="main-container flex space-between">
+        <div class="main-layout flex space-between">
             <span class="logo"><img src="img/logo/LOGO.png"></span>
             <ul class="main-nav clean-list flex">
-                <li><a onclick="onGallery()">Gallery</a></li>
-                <li><a onclick="onMemes()">Memes</a></li>
-                <li><a href="#about">About</a></li>
+                <li class="flex align-items"><a onclick="onGallery()">Gallery</a></li>
+                <li class="flex align-items"><a onclick="onMemes()">Memes</a></li>
+                <li class="flex align-items"><a href="#about">About</a></li>
             </ul>
             <button class="menu-btn" onclick="toggleMenu()">☰</button>
         </div>
     </header>
     
     <section class="search-container">
-        <div class="search main-container flex space-between">
+        <div class="search main-layout flex space-between">
             <form onsubmit="onSearch(event)">
                 <input class="input-search" type="text" placeholder="Enter search keyword" name="search" />
                 <button class="btn"><img class="img-search" src="img/icons/search-icon.png"></button>
             </form>
-            <div class="keywords-screen">
+            <div class="keywords-screen flex align-items">
                 <span class="keyword" onclick="onKeyword(this, 'politicians')">politicians</span>
                 <span class="keyword" onclick="onKeyword(this, 'happy')">happy</span>
                 <span class="keyword" onclick="onKeyword(this, 'sweet')">sweet</span>
@@ -40,52 +40,54 @@
     </section>
     
     <section class="more-keywords flex">
-        <div class="keywords-container main-container flex"></div>
+        <div class="keywords-container main-layout flex"></div>
     </section>
 
-    <section class="gallery main-container"></section>
+    <section class="gallery main-layout"></section>
 
-    <section class="meme-editor main-container">
+    <section class="meme-editor main-layout">
         <div class="canvas-container flex align-items justify-content">
             <canvas class="canvas" id="my-canvas" width="270" height="270" style="outline:1px solid gray; cursor: crosshair;"></canvas>
         </div>
-        <div class="canvas-content">
-            <input class="input-txt" type="text" placeholder="Enter text" name="txt" />
-            <img class="btn btn-switch" src="img/icons/up-and-down-opposite-double-arrows-side-by-side.png" onclick="onSwitch()">
-            <img class="btn btn-add" src="img/icons/add.png" onclick="onAdd()">
-            <img class="btn btn-trash" src="img/icons/trash.png" onclick="onTrash()">
-            <img class="btn btn-increase" src="img/icons/increase font - icon.png" onclick="onIncrease()">
-            <img class="btn btn-decrease" src="img/icons/decrease font - icon.png" onclick="onDecrease()">
-            <img class="btn btn-align-left" src="img/icons/align-to-left.png" onclick="onAlignLeft()">
-            <img class="btn btn-align-center" src="img/icons/center-text-alignment.png" onclick="onAlignCenter()">
-            <img class="btn btn-align-right" src="img/icons/align-to-right.png" onclick="onAlignRight()">
-            <select class="btn fonts" onchange="onFont()" name="font">
-                <option value="Impact">Impact</option>
-                <option value="Arial">Arial</option>
-                <option value="monospace">monospace</option>
-            </select>
-            <div class="btn btn-color-fill" onclick="onColor()" style="position:relative;">
-                <img src="img/icons/paint-board-and-brush.png">
-                <input class="input-color-fill" type="color" name="color-fill" value="#ffffff" style="opacity:0; position:absolute; left:0;top:0;width:100%"/>
+        <div class="flex align-items">
+            <div class="canvas-content">
+                <input class="input-txt" type="text" placeholder="Enter text" name="txt" />
+                <img class="btn btn-switch" src="img/icons/up-and-down-opposite-double-arrows-side-by-side.png" onclick="onSwitch()">
+                <img class="btn btn-add" src="img/icons/add.png" onclick="onAdd()">
+                <img class="btn btn-trash" src="img/icons/trash.png" onclick="onTrash()">
+                <img class="btn btn-increase" src="img/icons/increase font - icon.png" onclick="onIncrease()">
+                <img class="btn btn-decrease" src="img/icons/decrease font - icon.png" onclick="onDecrease()">
+                <img class="btn btn-align-left" src="img/icons/align-to-left.png" onclick="onAlignLeft()">
+                <img class="btn btn-align-center" src="img/icons/center-text-alignment.png" onclick="onAlignCenter()">
+                <img class="btn btn-align-right" src="img/icons/align-to-right.png" onclick="onAlignRight()">
+                <select class="btn fonts" onchange="onFont()" name="font">
+                    <option value="Impact">Impact</option>
+                    <option value="Arial">Arial</option>
+                    <option value="monospace">monospace</option>
+                </select>
+                <div class="btn btn-color-fill" onclick="onColor()" style="position:relative;">
+                    <img src="img/icons/paint-board-and-brush.png">
+                    <input class="input-color-fill" type="color" name="color-fill" value="#ffffff" style="opacity:0; position:absolute; left:0;top:0;width:100%"/>
+                </div>
+                <div class="btn btn-color-stroke" onclick="onColor()" style="position:relative;">
+                    <img src="img/icons/text stroke.png">
+                    <input class="input-color-stroke" type="color" name="color-stroke" value="#000000" style="opacity:0; position:absolute; left:0;top:0;width:100%"/>
+                </div>
+                <div class="btn btn-sticker flex align-items justify-content"></div>
+                <span class="btn btn-save flex align-items justify-content" onclick="onSave()">Save</span>
+                <a class="btn btn-download flex align-items justify-content" href="#" onclick="downloadCanvas(this)" download="">Download</a>
+                <form class="btn btn-share flex align-items justify-content" action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
+                    <input name="img" id="imgData" type="hidden" />
+                    <button  type="submit">Publish</button>
+                    <span class="share-container"></span>
+                </form>
             </div>
-            <div class="btn btn-color-stroke" onclick="onColor()" style="position:relative;">
-                <img src="img/icons/text stroke.png">
-                <input class="input-color-stroke" type="color" name="color-stroke" value="#000000" style="opacity:0; position:absolute; left:0;top:0;width:100%"/>
-            </div>
-            <div class="btn btn-sticker flex align-items justify-content"></div>
-            <span class="btn btn-save flex align-items justify-content" onclick="onSave()">Save</span>
-            <a class="btn btn-download flex align-items justify-content" href="#" onclick="downloadCanvas(this)" download="">Download</a>
-            <form class="btn btn-share flex align-items justify-content" action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
-                <input name="img" id="imgData" type="hidden" />
-                <button  type="submit">Publish</button>
-                <span class="share-container"></span>
-            </form>
         </div>
     </section>
 
-    <section class="user-memes"></section>
+    <section class="user-memes main-layout"></section>
 
-    <section id="about" class="about flex align-items">
+    <section id="about" class="about flex align-items justify-content">
         <img class="about-img flex" src="img/about/me.jpg">
         <div class="about-content">
             <h4>Zina Michailov</h4>
@@ -93,7 +95,7 @@
                 Full-Stack Web Developer, passionate about solving daily challenges,<br>
                 with experience in the latests web technologies.<br>Chemical Engineer specializing in materials
             </p>
-            <ul class="clean-list flex">
+            <ul class="links clean-list flex">
                 <li>
                   <a href="#">
                     <i class="fa fa-twitter flex align-items justify-content"></i>
@@ -113,9 +115,11 @@
         </div>
     </section>
 
-    <footer class="flex align-items justify-content">
-        <div class="logo"><img src="img/logo/LOGO.png"></div>
-        <small>all rights reserved 2019</small>
+    <footer>
+        <div class="main-layout flex space-between align-items">
+            <h3>Meme Generator</h3>
+            <small>© 2020</small>
+        </div>
     </footer>
 
     <script src="js/services/util-service.js"></script>

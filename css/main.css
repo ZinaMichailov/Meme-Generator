@@ -1,7 +1,3 @@
-/* FONTS */
-
-/*-----------------------------*/
-
 /* BASICS */
 
 * {
@@ -37,6 +33,13 @@ button:focus {
 
 /* LAYOUT  */
 
+.main-layout {
+	max-width: 1100px;
+	padding: 0 24px;
+	margin: auto;
+	overflow: hidden;
+}
+
 .main-container {
 	margin-left: auto;
 	margin-right: auto;
@@ -47,16 +50,11 @@ button:focus {
 
 header {
 	background-color: #ff7f00;
-	height: 66px;
-}
-
-header > * {
-	padding-top: 17px;
+	padding: 18px;
 }
 
 .logo {
 	width: 133px;
-	height: 22px;
 }
 
 .main-nav > *:not(:last-child) {
@@ -67,6 +65,7 @@ header > * {
 	color: white;
 	font-family: Montserrat;
 	font-size: 19px;
+	font-weight: bold;
 	cursor: pointer;
 }
 
@@ -118,35 +117,34 @@ header > * {
 
 .more-keywords .keywords-container > * {
 	margin-inline-end: 5px;
-	/* flex-grow: 1; */
 }
 
 /* Gallery */
 
 .gallery {
-	margin-top: 20px;
-	margin-bottom: 20px;
+	margin: 50px auto;
 	display: grid;
 	gap: 21px;
-	grid-template-columns: repeat(3, 1fr);
-	grid-template-rows: repeat(6, 1fr);
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.gallery > * {
+	cursor: pointer;
 }
 
 /* Editor */
 
 .meme-editor {
-	padding-top: 50px;
-	padding-bottom: 50px;
+	padding: 50px 0;
 	background-color: #e3e3e3;
-	height: 600px;
 	display: none;
 	grid-template-columns: 1fr 1.5fr;
 	grid-template-rows: 1fr;
+	min-height: 87vh;
 }
 
 .canvas-container {
 	width: 100%;
-	height: 500px;
 }
 
 .canvas {
@@ -188,6 +186,7 @@ header > * {
 	grid-row: 1 / 2;
 	border: none;
 	border-radius: 12px;
+	height: 50px;
 }
 
 .btn-switch {
@@ -297,8 +296,7 @@ a.btn {
 
 .user-memes {
 	display: none;
-	margin: 20px;
-	height: 100vh;
+	margin: 50px auto;
 	gap: 20px;
 	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 	grid-auto-rows: 152px;
@@ -327,6 +325,11 @@ a.btn {
 .about-content {
 	font-family: Montserrat;
 	font-size: 15px;
+	line-height: 20px;
+}
+
+.links {
+	padding-top: 13px !important;
 }
 
 .fa {
@@ -365,8 +368,7 @@ a.btn {
 footer {
 	background-color: #ff7f00;
 	color: white;
-	height: 208px;
-	flex-direction: column;
+	height: 60px;
 }
 
 footer .logo {
